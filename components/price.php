@@ -15,7 +15,7 @@
                         <form method="POST" id="ticketPriceForm" class="p-4 w-100">
                             <div class="form-group">
                                 <label>Price:</label>
-                                <input type="number" class="form-control" required name="new_price" id="new_price">
+                                <input type="number" class="form-control" style="font-size: 18pt; " required name="new_price" id="new_price">
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary">Save Update</button>
