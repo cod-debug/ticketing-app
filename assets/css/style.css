@@ -1,0 +1,180 @@
+@font-face {
+    font-family: 'Prompt';
+    src: url('../fonts/Prompt-Regular.ttf');
+}
+@font-face {
+    font-family: 'Prompt';
+    src: url('../fonts/Prompt-Medium.ttf');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Prompt';
+    src: url('../fonts/Prompt-Bold.ttf');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Prompt';
+    src: url('../fonts/Prompt-Light.ttf');
+    font-weight: 100;
+}
+@font-face {
+    font-family: 'Prompt';
+    src: url('../fonts/Prompt-Black.ttf');
+    font-weight: 900;
+}
+@font-face {
+    font-family: 'Prompt';
+    src: url('../fonts/Prompt-BoldItalic.ttf');
+    font-weight: 900;
+    font-style: italic;
+}
+
+* {
+    font-family: 'Century Gothic';
+}
+
+.buy-ticket-btn {
+    height: auto!important;
+    padding: 8px 30px;
+}
+.buy-ticket-btn:hover  {
+    transition: ease-in .3s;
+    color: white!important;
+}
+
+.height-full {
+    min-height: 100vh;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+body {
+    background-color: #f0d8ac;
+}
+
+.title {
+    color: #00dcfd!important;
+    transform: scaleX(1.5);
+    font-weight: 900;
+}
+
+.subtitle {
+    font-family: 'Prompt';
+    font-weight: bold;
+    letter-spacing: 4px;
+    font-size: 12px!important;
+}
+
+.verse {
+    font-size: 11px;
+}
+
+p {
+    font-size: 19px;
+}
+
+#buyTicketForm {
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 200;
+}
+
+#buyTicketForm .welcome-message,
+#adminLoginForm .welcome-message,
+#receiptFormForm {
+    background: #2d4644;
+    padding: 20px 30px
+}
+
+.form__group {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 10px;
+}
+.form__field {
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: .7rem;
+    color: #fff;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+.form__field::placeholder {
+    color: transparent;
+}
+.form__field:placeholder-shown ~ .form__label {
+    font-size: .7rem;
+    cursor: text;
+    top: 20px;
+}
+.form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: .7rem;
+    color: #9b9b9b;
+}
+.form__field:focus {
+    padding-bottom: 6px;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    border-image-slice: 1;
+}
+.form__field:focus ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #11998e;
+}
+/* reset input */
+.form__field:required, .form__field:invalid {
+    box-shadow: none;
+}
+
+select option {
+    color: black!important;
+}
+
+input[type=file] {
+    font-size: 11pt; 
+}
+.text-lg {
+    font-size: 20pt; 
+}
+.moving-logo {
+    position: fixed;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 100vw;
+    z-index: -1;
+}
+
+#buyTIcket {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: auto;
+}
+
+#boughtTicket {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: auto;
+}
+
+#result_number {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
