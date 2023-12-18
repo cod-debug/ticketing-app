@@ -185,6 +185,7 @@
 
         function closeReceiptForm(){
             closeForm();
+            $("#ticket_list").addClass("d-none");
             $("#receiptForm").addClass('d-none');
             $("#boughtTicket").removeClass('d-none');
         }
@@ -232,6 +233,8 @@
             let currentForm = e.target;
             let form_data = new FormData(currentForm);
             let formElement = $("#receiptFormForm")[0];
+
+            $("#buyersTable").DataTable().destroy();
             
             fetch('api/get-tickets-email.php', {
                 method: "POST",
@@ -244,25 +247,37 @@
                 if(data.error){
                     Swal.fire({
                         icon: "error",
-                        iconColor: 'dodgerblue',
+                        iconColor: 'darkslategreen',
                         title: "Oops...",
                         text: data.message
                     });
                 } else {
                     $tr = "";
-                    for(const row in data){
-                        let item = data[row];
-                        let ref_num = String(item.id).padStart(4, '0');
-                        $tr += `
-                            <tr>
-                                <td>${ref_num}</td>
-                                <td class="text-right">${item.total_amount}</td>
-                            </tr>
-                        `;
-                        $("#buyersTable tbody").html($tr);
+                    console.log(data);
+                    if(data.length > 0){
+                        for(const row in data){
+                            let item = data[row];
+                            let ref_num = String(item.id).padStart(4, '0');
+                            $tr += `
+                                <tr>
+                                    <td>${ref_num}</td>
+                                    <td class="text-right">${item.total_amount}</td>
+                                </tr>
+                            `;
+                            $("#buyersTable tbody").html($tr);
 
-                        $("#buyersTable").removeClass("d-none");
-                        total+=parseInt(item.total_amount);
+                            $("#buyersTable").removeClass("d-none");
+                            total+=parseInt(item.total_amount);
+                        }
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            iconColor: 'darkslategreen',
+                            title: "No data found.",
+                            text: data.message
+                        });
+                        $tr='';
+                        $("#buyersTable tbody").html($tr);
                     }
                 }
                 $("#buyersTable").DataTable();

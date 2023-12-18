@@ -1,28 +1,10 @@
 
 <div id="mainAdminPage" class="d-none">
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#"><img src="./assets/images/logo.jpg" style="width: 60px;" /></a>
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">(Placeholder for now)</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 text-right">
-                <li class="nav-item" id="logoutBtn">
-                    <a class="nav-link" href="#">Logout</a>
-                </li>
-            </ul>
-        </div>
+        <?php require('components/navbar.php') ?>
     </nav>
     <main>
-        <div class="container bg-white p-4" style="min-height: 80vh;">
+        <div class="container bg-white p-4 my-4" style="min-height: 80vh;">
             <div class="table-responsive">
                 <div class="d-flex justify-content-between align-items-center">
                     <h4>Ticket Purchases</h4>
@@ -51,6 +33,7 @@
             </div>
         </div>
     </main>
+    <?php require('components/footer.php') ?>
 </div>
 <script>
     
@@ -74,6 +57,7 @@
             for(const row in data){
                 let item = data[row];
                 let ref_num = String(item.id).padStart(4, '0');
+                console.log(`${JSON.stringify(item)}`);
                 $tr += `
                     <tr>
                         <td>${ref_num}</td>
@@ -89,14 +73,15 @@
 
                 total+=parseInt(item.total_amount);
             }
+
+            $(".preview-ticket").on('click', function () {
+                let data = $(this).data('ticket');
+                console.log(data);
+                previewTicket(data);
+            });
         }
         $("#buyersTable").DataTable();
         $('.total-amount-output').html(`₱ ${total.toLocaleString()}`);
-
-        $(".preview-ticket").on('click', function () {
-            let data = $(this).data('ticket');
-            previewTicket(data);
-        });
     })
     .catch(error => {
         console.error('Error:', error);
